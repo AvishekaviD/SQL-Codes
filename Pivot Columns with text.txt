@@ -1,0 +1,1 @@
+http://stackoverflow.com/questions/10997385/sql-is-there-a-clever-way-to-show-text-data-in-pivoted-columns-without-having-i

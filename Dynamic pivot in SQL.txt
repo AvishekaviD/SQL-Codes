@@ -1,0 +1,24 @@
+----http://www.codeproject.com/Tips/1011591/Dynamic-Pivot-Query-in-SQL-Server
+
+
+
+
+
+
+---defining variables
+
+DECLARE @column AS NVARCHAR(MAX),@dynamic AS NVARCHAR(MAX)
+
+---combining columns
+
+SELECT @column = STUFF((SELECT distinct  ',' + QUOTENAME([Lead Status]) FROM [Kalyan_Temp].dbo.LeadList
+FOR XML PATH(''), TYPE).value('.', 'NVARCHAR(MAX)') ,1,1,'')
+
+---dynamic pivot
+
+SELECT @dynamic  = 'SELECT * FROM (SELECT [Branch Name],[Lead Status]  FROM [Kalyan_Temp].dbo.LeadList)X
+PIVOT 
+(count([Lead Status]) for [Lead Status] in (' + @column + ')) P'
+
+EXEC SP_EXECUTESQL @dynamic 
+

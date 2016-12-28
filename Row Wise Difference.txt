@@ -1,0 +1,2 @@
+
+http://stackoverflow.com/questions/9994862/date-difference-between-consecutive-rows
